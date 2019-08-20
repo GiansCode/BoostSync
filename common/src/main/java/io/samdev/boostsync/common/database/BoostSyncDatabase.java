@@ -95,6 +95,14 @@ public class BoostSyncDatabase extends SqlDatabase
 		);
 	}
 
+	public void updateOneTimeReward(UUID uuid)
+	{
+		asyncUpdate(
+			"UPDATE boostsync_synced SET one_time_reward = true WHERE uuid = ?;",
+			statement -> statement.setString(1, uuid.toString())
+		);
+	}
+
 	public void updateLastBoostReward(UUID uuid, Instant instant)
 	{
 		asyncUpdate(
@@ -150,7 +158,8 @@ public class BoostSyncDatabase extends SqlDatabase
 				"`uuid` CHAR(36) PRIMARY KEY, " +
 				"`discord_id` VARCHAR(20) UNIQUE KEY NOT NULL, " +
 				"`boosting` BOOLEAN NOT NULL, " +
-				"`last_boost_reward` BIGINT NOT NULL" +
+				"`last_boost_reward` BIGINT NOT NULL, " +
+				"`one_time_reward` BOOLEAN NOT NULL" +
 			");"
 		);
 	}

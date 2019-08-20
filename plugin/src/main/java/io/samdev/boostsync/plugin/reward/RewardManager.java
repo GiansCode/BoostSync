@@ -19,13 +19,17 @@ public class RewardManager
 	{
 		this.plugin = plugin;
 
-		this.rewards = plugin.getConfig().getStringList("boost.rewards");
+		this.oneTimeRewards = plugin.getConfig().getStringList("sync.one_time_rewards");
+		this.boostRewards = plugin.getConfig().getStringList("boost.rewards");
+
 		this.rewardCooldown = Duration.ofSeconds(plugin.getConfig().getLong("boost.reward_cooldown"));
 
 		Bukkit.getScheduler().runTaskTimer(plugin, this::checkPlayers, 0L, 60L);
 	}
 
-	private final List<String> rewards;
+	private final List<String> oneTimeRewards;
+	private final List<String> boostRewards;
+
 	private final Duration rewardCooldown;
 
 	private void checkPlayers()
@@ -35,9 +39,17 @@ public class RewardManager
 			Player player = entry.getKey();
 			SyncData data = entry.getValue();
 
+			if (!data.getOneTimeReward())
+			{
+				giveOneTimeRewards(player);
+
+				data.updateOneTimeReward();
+				plugin.getSqlDatabase().updateOneTimeReward(player.getUniqueId());
+			}
+
 			if (data.isBoosting() && Instant.now().minus(rewardCooldown).isAfter(data.getLastBoostReward()))
 			{
-				giveRewards(player);
+				giveBoostRewards(player);
 
 				data.updateLastBoostReward();
 				plugin.getSqlDatabase().updateLastBoostReward(player.getUniqueId(), data.getLastBoostReward());
@@ -45,8 +57,13 @@ public class RewardManager
 		}
 	}
 
-	private void giveRewards(Player player)
+	private void giveOneTimeRewards(Player player)
 	{
-		ActionUtil.executeActions(player, rewards);
+		ActionUtil.executeActions(player, oneTimeRewards);
+	}
+
+	private void giveBoostRewards(Player player)
+	{
+		ActionUtil.executeActions(player, boostRewards);
 	}
 }

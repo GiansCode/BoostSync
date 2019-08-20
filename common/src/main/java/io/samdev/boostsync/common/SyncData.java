@@ -12,19 +12,22 @@ public class SyncData
 		return results -> results.next() ? new SyncData(
 			results.getString("discord_id"),
 			results.getBoolean("boosting"),
-			results.getLong("last_boost_reward")
+			results.getLong("last_boost_reward"),
+			results.getBoolean("one_time_reward")
 		) : null;
 	}
 
 	private final String discordId;
 	private final boolean boosting;
 	private Instant lastBoostReward;
+	private boolean oneTimeReward;
 
-	public SyncData(String discordId, boolean boosting, long lastBoostReward)
+	public SyncData(String discordId, boolean boosting, long lastBoostReward, boolean oneTimeReward)
 	{
 		this.discordId = discordId;
 		this.boosting = boosting;
 		this.lastBoostReward = Instant.ofEpochMilli(lastBoostReward);
+		this.oneTimeReward = oneTimeReward;
 	}
 
 	public String getDiscordId()
@@ -45,5 +48,15 @@ public class SyncData
 	public void updateLastBoostReward()
 	{
 		lastBoostReward = Instant.now();
+	}
+
+	public boolean getOneTimeReward()
+	{
+		return oneTimeReward;
+	}
+
+	public void updateOneTimeReward()
+	{
+		oneTimeReward = true;
 	}
 }

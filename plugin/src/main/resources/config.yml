@@ -28,6 +28,10 @@ sync:
   # the player will receive a message in chat telling them that their account is now synced
   polling_interval: 10
 
+  one_time_rewards:
+    - "[MESSAGE] &aYou received your rewards for syncing your Discord account!"
+    - "[CONSOLECOMMAND] give %player_name% emerald"
+
 messages:
   command_link_player_only: "&cOnly players can use this command"
   command_link_usage: "&eUsage: /link"

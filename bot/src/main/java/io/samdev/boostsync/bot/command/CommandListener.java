@@ -100,7 +100,7 @@ public class CommandListener extends ListenerAdapter
 
 		bot.getDatabase().removeCode(code);
 
-		SyncData syncData = new SyncData(member.getId(), bot.getBoostManager().isBoosting(member), 0L);
+		SyncData syncData = new SyncData(member.getId(), bot.getBoostManager().isBoosting(member), 0L, false);
 		bot.getDatabase().insertSyncData(pendingData.getUuid(), syncData);
 
 		Message.COMMAND_SUCCESS.send(channel, member, "username", pendingData.getUsername());
