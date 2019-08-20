@@ -1,0 +1,43 @@
+# Placeholders:
+# boostsync_synced, boostsync_boosting
+
+# MySQL database credentials
+database:
+  host:
+  port:
+  database:
+  username:
+  password:
+
+code:
+  # Time in seconds after which a code will expire
+  # Set to 0 to disable
+  expiry_time: 60
+
+boost:
+  # Time in seconds before which a booster gets their next set of rewards
+  # Defaults to 2 weeks (1209600)
+  reward_cooldown: 1209600
+  rewards:
+    - "[MESSAGE] &aYou received your Discord Nitro boosting rewards!"
+    - "[CONSOLECOMMAND] give %player_name% diamond 64"
+
+sync:
+  # Number of seconds between each check to see if any players have recently synced
+  # The lower this is, the more database requests will be sent but the quicker
+  # the player will receive a message in chat telling them that their account is now synced
+  polling_interval: 10
+
+messages:
+  command_link_player_only: "&cOnly players can use this command"
+  command_link_usage: "&eUsage: /link"
+  command_link_already_synced: "&aYour account is already linked"
+  command_link_success: "&aYour code is &b{code}&a, use it within 60 seconds"
+
+  command_unlink_permission: "boostsync.unlink"
+  command_unlink_no_permission: "&cYou don't have permission to use this command"
+  command_unlink_usage: "&eUsage: /unlink <player>"
+  command_unlink_not_synced: "&cThat player's account is not linked"
+  command_unlink_success: "&aUnlinked {player}'s account"
+
+  account_linked: "&aYour Discord account is now linked!"

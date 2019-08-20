@@ -1,0 +1,21 @@
+{
+  "bot_token": "",
+  "guild_id": "",
+  "database": {
+    "host": "",
+    "port": 3306,
+    "database": "",
+    "username": "",
+    "password": ""
+  },
+  "bot_channel_id": "leave blank for the command to work in any channel",
+  "boosting_role_id": "",
+  "sync_command": "!sync",
+  "messages": {
+    "command_usage": "{tag} - Usage: !sync <code>",
+    "command_already_synced": "{tag} - Your account is already synced",
+    "command_code_invalid": "{tag} - That code is not valid",
+    "command_code_expired": "{tag} - That code has expired, generate a new one on the server",
+    "command_success": "{tag} - Your account is now linked with Minecraft user {username}"
+  }
+}
