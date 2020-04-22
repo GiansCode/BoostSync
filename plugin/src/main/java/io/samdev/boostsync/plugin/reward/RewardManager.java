@@ -59,11 +59,11 @@ public class RewardManager
 
 	private void giveOneTimeRewards(Player player)
 	{
-		ActionUtil.executeActions(player, oneTimeRewards);
+		plugin.getActionUtil().executeActions(player, oneTimeRewards);
 	}
 
 	private void giveBoostRewards(Player player)
 	{
-		ActionUtil.executeActions(player, boostRewards);
+		plugin.getActionUtil().executeActions(player, boostRewards);
 	}
 }

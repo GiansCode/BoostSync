@@ -3,7 +3,6 @@ version: ${project.version}
 author: Mas281
 
 softdepend: [PlaceholderAPI]
-depend: [ActionUtil]
 main: io.samdev.boostsync.plugin.BoostSync
 
 commands:

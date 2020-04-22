@@ -1,5 +1,6 @@
 package io.samdev.boostsync.plugin;
 
+import io.samdev.actionutil.ActionUtil;
 import io.samdev.boostsync.common.database.BoostSyncDatabase;
 import io.samdev.boostsync.common.database.SqlCredentials;
 import io.samdev.boostsync.plugin.command.LinkCommand;
@@ -17,7 +18,9 @@ public class BoostSync extends JavaPlugin
 	private BoostSyncDatabase database;
 	private SyncManager syncManager;
 	private CodeManager codeManager;
-
+	
+	private ActionUtil actionUtil;
+	
 	@Override
 	public void onEnable()
 	{
@@ -30,6 +33,8 @@ public class BoostSync extends JavaPlugin
 		syncManager = new SyncManager(this);
 		codeManager = new CodeManager(this);
 
+		actionUtil = ActionUtil.init(this);
+		
 		if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null)
 		{
 			new SyncPlaceholders(this).register();
@@ -65,5 +70,9 @@ public class BoostSync extends JavaPlugin
 	public CodeManager getCodeManager()
 	{
 		return codeManager;
+	}
+
+	public ActionUtil getActionUtil() {
+		return actionUtil;
 	}
 }
