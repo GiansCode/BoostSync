@@ -1,4 +1,6 @@
 .idea/
 target/
+plugin/testServer/
 
+*.json
 *.iml

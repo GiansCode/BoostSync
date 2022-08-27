@@ -47,7 +47,8 @@ public class BotConfig
 
 	public TextChannel getBotChannel()
 	{
-		return bot.getJda().getTextChannelById(config.get("bot_channel_id").getAsString());
+		final String id = config.get("bot_channel_id").getAsString();
+		return id.isEmpty() ? null : bot.getJda().getTextChannelById(id);
 	}
 
 	public Role getBoostingRole()

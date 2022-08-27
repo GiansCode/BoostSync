@@ -72,7 +72,7 @@ public class BoostSyncDatabase extends SqlDatabase
 	public void insertSyncData(UUID uuid, SyncData data)
 	{
 		asyncUpdate(
-			"INSERT INTO boostsync_synced VALUES (?,?,?,?);",
+			"INSERT INTO boostsync_synced (uuid, discord_id, boosting, last_boost_reward) VALUES (?,?,?,?);",
 			statement ->
 			{
 				statement.setString(1, uuid.toString());
@@ -159,7 +159,7 @@ public class BoostSyncDatabase extends SqlDatabase
 				"`discord_id` VARCHAR(20) UNIQUE KEY NOT NULL, " +
 				"`boosting` BOOLEAN NOT NULL, " +
 				"`last_boost_reward` BIGINT NOT NULL, " +
-				"`one_time_reward` BOOLEAN NOT NULL" +
+				"`one_time_reward` BOOLEAN NOT NULL DEFAULT false" +
 			");"
 		);
 	}
