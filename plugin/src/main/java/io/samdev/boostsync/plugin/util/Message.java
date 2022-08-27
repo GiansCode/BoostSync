@@ -2,6 +2,7 @@ package io.samdev.boostsync.plugin.util;
 
 import io.samdev.boostsync.common.util.UtilString;
 import io.samdev.boostsync.plugin.BoostSync;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -35,7 +36,7 @@ public enum Message
 	{
 		if (value != null && !value.isEmpty())
 		{
-			sender.sendMessage(UtilString.formatArgs(value, params));
+			sender.sendMessage(MiniMessage.miniMessage().deserialize(UtilString.formatArgs(value, params)));
 		}
 	}
 
@@ -44,19 +45,13 @@ public enum Message
 	{
 		for (Message message : values())
 		{
-			Object object = plugin.getConfig().get("messages." + message.name().toLowerCase());
+			String value;
 
-			if (object == null)
-			{
-				plugin.getLogger().severe("value missing for message " + message.name());
-				continue;
+			if (plugin.getConfig().isList("messages." + message.name().toLowerCase())) {
+				value = String.join("\n", plugin.getConfig().getStringList("messages." + message.name().toLowerCase()));
+			} else {
+				value = plugin.getConfig().getString("messages." + message.name().toLowerCase());
 			}
-
-			String value = object instanceof String ?
-				(String) object :
-				object instanceof List<?> ?
-					String.join("\n", (List<String>) object) :
-					null;
 
 			if (value == null)
 			{
@@ -64,7 +59,7 @@ public enum Message
 				continue;
 			}
 
-			message.value = ChatColor.translateAlternateColorCodes('&', value);
+			message.value = value;
 		}
 	}
 }

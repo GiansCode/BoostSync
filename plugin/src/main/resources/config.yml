@@ -33,15 +33,15 @@ sync:
     - "[CONSOLECOMMAND] give %player_name% emerald"
 
 messages:
-  command_link_player_only: "&cOnly players can use this command"
-  command_link_usage: "&eUsage: /link"
-  command_link_already_synced: "&aYour account is already linked"
-  command_link_success: "&aYour code is &b{code}&a, use it within 60 seconds"
+  command_link_player_only: "<red>Only players can use this command"
+  command_link_usage: "<yellow>Usage: /link"
+  command_link_already_synced: "<green>Your account is already linked"
+  command_link_success: "<green>Your code is <aqua>{code}<green>, use it within 60 seconds"
 
   command_unlink_permission: "boostsync.unlink"
-  command_unlink_no_permission: "&cYou don't have permission to use this command"
-  command_unlink_usage: "&eUsage: /unlink <player>"
-  command_unlink_not_synced: "&cThat player's account is not linked"
-  command_unlink_success: "&aUnlinked {player}'s account"
+  command_unlink_no_permission: "<red>You don't have permission to use this command"
+  command_unlink_usage: "<yellow>Usage: /unlink <player>"
+  command_unlink_not_synced: "<red>That player's account is not linked"
+  command_unlink_success: "<green>Unlinked {player}'s account"
 
-  account_linked: "&aYour Discord account is now linked!"
+  account_linked: "<green>Your Discord account is now linked!"
